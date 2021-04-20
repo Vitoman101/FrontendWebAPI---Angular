@@ -1,0 +1,61 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" 
+data-toggle="modal" data-target="#exampleModal"
+(click)='addClick()'
+data-backdrop='static' data-keyboard='false'
+>
+    Add Student
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close" 
+          data-dismiss="modal" aria-label="Close"
+          (click)='closeClick()'>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-stud [stud]='stud' *ngIf='ActivateAddEditStudComp'></app-add-edit-stud>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let data of StudentsList'>
+            <td>{{data.id}}</td>
+            <td>{{data.firstName}}</td>
+            <td>{{data.lastName}}</td>
+            <td>{{data.address}}</td>
+            <td>
+                <button type="button" class="btn btn-primary float-right m-1" 
+                data-toggle="modal" data-target="#exampleModal"
+                (click)='editClick(data)'
+                data-backdrop='static' data-keyboard='false'
+                >
+                    Edit
+                </button>
+                <td>
+                    <button type="button" class="btn btn-danger float-right m-1" 
+                    (click)='deleteClick(data)'>
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
